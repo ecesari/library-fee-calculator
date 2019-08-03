@@ -1,0 +1,30 @@
+﻿@model MainModel
+
+
+@using (Html.BeginForm("Calculate", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.Countries)
+
+    <div class="form-group input-group-sm">
+        @Html.LabelFor(model => model.PickUpDate)
+        @Html.EditorFor(x => x.PickUpDate)
+        @Html.ValidationMessageFor(model => model.PickUpDate)
+    </div>
+    <div class="form-group input-group-sm">
+        @Html.LabelFor(model => model.DropOffDate)
+        @Html.EditorFor(x => x.DropOffDate)
+        @Html.ValidationMessageFor(model => model.DropOffDate)
+    </div>
+    <div class="form-group input-group-sm">
+        @Html.LabelFor(model => model.Countries)
+        @Html.DropDownListFor(m => m.SelectedCountry, new SelectList(Model.Countries, "Id", "Name"))
+        @Html.ValidationMessageFor(model => model.Countries)
+    </div>
+    <div class="form-group input-group-sm">
+        @Html.LabelFor(m => m.PenaltyFee)
+        @Html.DisplayFor(m => m.PenaltyFee)
+        @Html.ValidationMessageFor(model => model.PenaltyFee)
+    </div>
+    <input type="submit" value="Calculate" id="btnSubmit" />
+}
+
